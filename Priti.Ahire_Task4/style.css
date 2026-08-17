@@ -1,0 +1,87 @@
+/* Includes padding and border inside the element size */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove default margin and set the page height */
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+}
+
+/* 25vw space on both sides and 10vh space at top and bottom */
+.page {
+    width: 50vw;
+    height: 100vh;
+    margin: 0 25vw;
+    padding: 10vh 0;
+}
+
+/* Main card */
+.card {
+    width: 92%;
+    height: 80vh;
+    margin: 0 auto;
+    padding: 2vh 2vw;
+    text-align: center;
+    background-color: #ffffff;
+    border: 0.15vw solid #cbd5e1;
+    border-radius: 1vw;
+    box-shadow: 0 1vh 2vh rgba(15, 23, 42, 0.12);
+}
+
+/* Image area with padding and border */
+.image-box {
+    width: 100%;
+    height: 50%;
+    padding: 0.4vw;
+    border: 0.2vw solid #5b6ee1;
+    border-radius: 0.7vw;
+}
+
+/* Image fills the image box */
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.4vw;
+}
+
+/* Heading styling */
+h1 {
+    margin: 1.5vh 0 1vh;
+    color: #243b64;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.8vw;
+    line-height: 1.1;
+}
+
+/* Paragraph styling */
+p {
+    margin: 2vh 1vw;
+    color: #526174;
+    font-size: 1.35vw;
+    line-height: 1.4;
+}
+
+/* Button with gradient background */
+.explore {
+    margin-top: 1.5vh;
+    padding: 1.5vh 2.5vw;
+    border: none;
+    border-radius: 1.5vw;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1.25vw;
+    font-weight: bold;
+    letter-spacing: 0.04vw;
+    cursor: pointer;
+}
+
+/* Changes the gradient when hovering */
+.explore:hover {
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+}

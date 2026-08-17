@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping Cart - Thala 7 Sneaker Store</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <header class="header">
+
+            <div class="container header-container">
+
+                <div class="logo">
+                    <h1>Thala-7</h1>
+                </div>
+
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="payment.html">Payment</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+
+                <div class="cart-icon">
+                    <a href="cart.html">🛒</a>
+                </div>
+
+                <div class="user-icon">
+                    <button type="button">👤</button>
+                </div>
+
+            </div>
+
+        </header>
+
+        <main class="inner-page-main">
+
+            <section class="cart-section">
+
+                <div class="container cart-container">
+
+                    <div class="cart-left">
+
+                        <h1>Shopping Cart</h1>
+
+                        <div class="cart-table-wrapper">
+
+                            <table class="cart-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="cartTableBody"></tbody>
+
+                            </table>
+
+                        </div>
+
+                        <p id="emptyCartMsg" class="empty-cart-msg">
+                            Your cart is empty.
+                            <a href="product.html">Go shopping →</a>
+                        </p>
+
+                        <a href="product.html" class="continue-shopping">
+                            ← Continue Shopping
+                        </a>
+
+                    </div>
+
+                    <div class="cart-right">
+
+                        <div class="cart-summary">
+
+                            <div class="coupon-section">
+
+                                <label for="coupon">
+                                    Enter Coupon Code
+                                </label>
+
+                                <div class="coupon-box">
+
+                                    <input
+                                        type="text"
+                                        id="coupon"
+                                        class="coupon-input"
+                                        placeholder="COUPON CODE">
+
+                                    <button
+                                        type="button"
+                                        class="coupon-button">
+                                        Apply Coupon
+                                    </button>
+
+                                </div>
+
+                                <p id="couponMessage"
+                                    class="coupon-message"></p>
+
+                            </div>
+
+                            <div class="price-details">
+
+                                <div>
+                                    <span>Sub Total</span>
+                                    <span class="subtotal">₹0</span>
+                                </div>
+
+                                <div>
+                                    <span>Taxes</span>
+                                    <span class="tax">₹0</span>
+                                </div>
+
+                                <div>
+                                    <span>Discount</span>
+                                    <span class="discount">₹0</span>
+                                </div>
+
+                                <div class="total">
+                                    <span>Total</span>
+                                    <span class="total-amount">₹0</span>
+                                </div>
+
+                            </div>
+
+                            <a href="payment.html" class="pay-now">
+                                Pay Now
+                                <span class="pay-amount">₹0</span>
+                            </a>
+
+                            <div class="payment-icons">
+                                <span class="secure">🔒 SECURE</span>
+                                <span class="razorpay">Razorpay</span>
+                                <span class="upi">UPI</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <script src="script.js"></script>
+
+    </body>
+</html>

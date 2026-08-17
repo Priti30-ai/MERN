@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.box {
+    background-color: white;
+    width: 450px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    font-size: 18px;
+    margin: 12px;
+}
+
+#result {
+    margin-top: 25px;
+    font-weight: bold;
+    color: green;
+}

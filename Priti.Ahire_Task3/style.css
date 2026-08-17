@@ -1,0 +1,126 @@
+/* UNIVERSAL SELECTOR */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+
+/* ELEMENT SELECTOR - BODY */
+
+body {
+min-height: 100vh;
+padding: 40px 20px;
+background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* HEADER */
+
+header {
+max-width: 900px;
+margin: auto;
+padding: 30px;
+text-align: center;
+background-color: white;
+border-radius: 15px 15px 0 0;
+}
+
+/* CLASS SELECTOR All elements with class "head" */
+
+.head {
+margin: 15px;
+color: darkblue;
+}
+
+/* ID SELECTOR Second heading */
+
+#bglime {
+padding: 15px;
+color: red;
+background-color: lime;
+border-radius: 8px;
+}
+
+/* MAIN CONTENT */
+
+main {
+max-width: 900px;
+margin: auto;
+padding: 30px;
+background-color: white;
+}
+
+/* SECTION */
+
+section {
+margin-bottom: 30px;
+padding: 20px;
+border-left: 5px solid darkblue;
+background-color: #f4f7fb;
+}
+
+/* HEADING */
+
+h2 {
+margin-bottom: 15px;
+color: #243b64;
+}
+
+/* ELEMENT SELECTOR - PARAGRAPH */
+
+p {
+margin: 15px 0;
+padding: 15px;
+color: white;
+background-color: #34495e;
+border-radius: 8px;
+line-height: 1.6;
+}
+
+/* ID SELECTOR - SECOND PARAGRAPH */
+
+#para {
+color: black;
+background-color: #ffd966;
+font-size: 22px;
+font-weight: bold;
+}
+
+/* LISTS */
+
+ul,
+ol {
+margin-left: 30px;
+line-height: 2;
+}
+
+li {
+font-size: 18px;
+}
+
+
+ul li:first-child a {
+color: blue;
+font-weight: bold;
+text-decoration: none;
+}
+
+/* HOVER EFFECT */
+
+ul li:first-child a:hover {
+color: red;
+text-decoration: underline;
+}
+
+/* FOOTER */
+
+footer {
+max-width: 900px;
+margin: auto;
+padding: 20px;
+color: white;
+text-align: center;
+background-color: #172b4d;
+border-radius: 0 0 15px 15px;
+}

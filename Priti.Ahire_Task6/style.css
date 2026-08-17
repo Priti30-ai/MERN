@@ -1,0 +1,113 @@
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Body */
+
+body{
+    font-family:cursive;
+    background:#e0c0d0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* Container */
+
+.container{
+    display:flex;
+    width:800px;
+    background:rgb(181, 183, 243);
+    border:1px solid #cccccc;
+}
+
+/* Left */
+
+.left-section{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.left-section img{
+    width:115%;
+    max-width:380px;
+    height:auto;
+}
+
+/* Right */
+
+.right-section{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:30px;
+}
+
+/* Heading */
+
+.right-section h1{
+    margin-bottom:10px;
+}
+
+/* Text */
+
+.right-section p{
+    margin-bottom:20px;
+    color:#555555;
+}
+
+/* Form */
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Label */
+
+label{
+    margin-bottom:5px;
+}
+
+/* Input */
+
+input{
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #cccccc;
+    font-size:15px;
+}
+
+/* Button */
+
+button{
+    padding:10px;
+    background:#2d89ef;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1f6fd1;
+}
+
+/* Register */
+
+.register{
+    margin-top:20px;
+}
+
+.register a{
+    color:#2d89ef;
+    text-decoration:none;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product - Thala 7 Sneaker Store</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <header class="header">
+            <div class="container header-container">
+
+                <div class="logo">
+                    <h1>Thala-7</h1>
+                </div>
+
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="payment.html">Payment</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+
+                <div class="cart-icon">
+                    <a href="cart.html">🛒</a>
+                </div>
+
+                <div class="user-icon">
+                    <button type="button">👤</button>
+                </div>
+
+            </div>
+        </header>
+
+        <main class="inner-page-main">
+
+            <section class="display">
+
+                <div class="container product-container">
+
+                    <div class="left-show">
+
+                        <div class="main-image">
+                            <img
+                                id="mainProductImage"
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=870&auto=format&fit=crop"
+                                alt="Seven By M.S.Dhoni Women's Shoes">
+                        </div>
+
+                    </div>
+
+                    <div class="right-show">
+
+                        <div class="product-details">
+
+                            <h1>Seven By M.S.Dhoni Women's Shoes</h1>
+
+                            <p class="description">
+                                Stylish and comfortable sneakers designed for
+                                everyday
+                                use. Get the perfect combination of comfort,
+                                quality
+                                and style.
+                            </p>
+
+                            <div class="price-section">
+
+                                <h2>₹1,334</h2>
+
+                                <div class="sale">
+                                    <span>73% OFF</span>
+                                    <p>Limited Time Offer</p>
+                                </div>
+
+                            </div>
+
+                            <div class="product-actions">
+
+                                <div class="quantity">
+
+                                    <button type="button"
+                                        id="qtyMinus">−</button>
+
+                                    <span id="productQty">1</span>
+
+                                    <button type="button"
+                                        id="qtyPlus">+</button>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="addToCartBtn"
+                                    class="add-cart"
+                                    data-id="shoe-1"
+                                    data-name="Seven By M.S.Dhoni Women's Shoes"
+                                    data-price="1334"
+                                    data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=870&auto=format&fit=crop">
+                                    🛒 Add to Cart
+                                </button>
+
+                            </div>
+
+                            <p id="addToCartMsg" class="add-cart-msg"></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="gallery-wrapper">
+
+                    <button
+                        type="button"
+                        class="gallery-button gallery-left">
+                        ←
+                    </button>
+
+                    <div class="gallery" id="productGallery">
+
+                        <div class="gallery-item">
+                            <img
+                                class="gallery-thumb active-thumb"
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=870&auto=format&fit=crop"
+                                alt="Shoe Image 1">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                class="gallery-thumb"
+                                src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=870&auto=format&fit=crop"
+                                alt="Shoe Image 2">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                class="gallery-thumb"
+                                src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=870&auto=format&fit=crop"
+                                alt="Shoe Image 3">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                class="gallery-thumb"
+                                src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=870&auto=format&fit=crop"
+                                alt="Shoe Image 4">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                class="gallery-thumb"
+                                src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=870&auto=format&fit=crop"
+                                alt="Shoe Image 5">
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="gallery-button gallery-right">
+                        →
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <script src="script.js"></script>
+
+    </body>
+</html>

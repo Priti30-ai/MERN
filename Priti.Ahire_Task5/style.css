@@ -1,0 +1,126 @@
+/* Basic reset */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+body {
+font-family: Arial, sans-serif;
+background-color: #e49dbe;
+color: #2f3640;
+}
+
+/* Navbar */
+
+.navbar {
+width: 100%;
+height: 10vh;
+padding: 3vh 5vw;
+border-bottom: 1px solid #eeeeee;
+}
+
+.logo {
+display: inline;
+margin-right: 22%;
+font-size: 1.5vw;
+font-weight: bold;
+color: #536273;
+}
+
+.menu {
+display: inline;
+}
+
+.menu a {
+margin: 0 0.8vw;
+color: #39414a;
+font-size: 1vw;
+text-decoration: none;
+}
+
+.menu a:hover {
+color: #0fa3ee;
+}
+
+.username {
+display: inline;
+float: right;
+color: #0274f7;
+font-size: 1.5vw;
+}
+
+/* Hero section */
+
+.hero-section {
+position: relative;
+width: 100%;
+height: 90vh;
+padding: 5vh 7vw;
+}
+
+.hero-content {
+width: 50%;
+float: left;
+padding-top: 10vh;
+}
+
+.hero-content h1 {
+margin-bottom: 2vh;
+color: #4d5968;
+font-size: 3.2vw;
+line-height: 1.15;
+}
+
+.hero-content h1 span {
+color: #079fe6;
+}
+
+.hero-content p {
+max-width: 35vw;
+margin-bottom: 3vh;
+color: #445364;
+font-size: 1.1vw;
+line-height: 1.6;
+}
+
+.hero-content button {
+border: none;
+border-radius: 0.6vw;
+padding: 1.4vh 1.7vw;
+background-color: #15a9ed;
+color: white;
+font-size: 1vw;
+cursor: pointer;
+}
+
+.hero-content button:hover {
+background-color: #078dcc;
+}
+
+/* Image is positioned inside the hero section */
+
+.hero-image {
+position: absolute;
+top: 12vh;
+right: 7vw;
+width: 45%;
+text-align: center;
+}
+
+.hero-image img {
+width: 29vw;
+height: 50vh;
+border: 0.2vw solid #6b7989;
+border-radius: 1vw;
+box-shadow: #6b7989 0.5vw 0.5vw 1vw 0.2vw;
+}
+
+/* Clear the floated content */
+
+.hero-section::after {
+content: "";
+display: block;
+clear: both;
+}

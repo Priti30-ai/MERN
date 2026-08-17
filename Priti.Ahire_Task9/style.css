@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #9ec6f6;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+}
+
+.logo {
+  font-size: 30px;
+  color: #243b53;
+}
+
+.navbar {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #555;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  color: #0099ff;
+}
+
+.user-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #d9efff;
+  color: #f63033;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-btn:hover {
+  background: #fa026e;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 50px;
+  gap: 40px;
+}
+
+.content {
+  width: 50%;
+}
+
+.content h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: #243b53;
+}
+
+.content span {
+  color: #0099ff;
+}
+
+.content p {
+  margin: 25px 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.book {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  background: #9508eca1;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.book:hover {
+  background: #588cec;
+  transform: translateY(-5px) scale(1.08) rotate(-5deg);
+}
+
+.image {
+  width: 50%;
+  text-align: center;
+}
+
+.image img {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 30px;
+  }
+
+  .content,
+  .image {
+    width: 100%;
+  }
+
+  .content h1 {
+    font-size: 38px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  header {
+    padding: 20px;
+  }
+
+  .hero {
+    padding: 30px 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .navbar {
+    gap: 15px;
+  }
+
+  .navbar a {
+    font-size: 14px;
+  }
+
+  .content h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    color: #243b53;
+    margin-bottom: 15px;
+  }
+}
