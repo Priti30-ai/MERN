@@ -1,33 +1,31 @@
-// Find sum of first n natural numbers
-function sumNumbers(n) {
-    let total = 0;
+// Sum of first n natural numbers
+function findSum(n) {
+    let sum = 0;
 
     for (let i = 1; i <= n; i++) {
-        total = total + i;
+        sum += i;
     }
 
-    return total;
+    return sum;
 }
 
-
-// Print multiplication table
-function printTable(num) {
-    console.log("Multiplication table of " + num);
+// Multiplication table
+function table(n) {
+    console.log("Table of " + n);
 
     for (let i = 1; i <= 10; i++) {
-        console.log(num + " x " + i + " = " + (num * i));
+        console.log(n + " * " + i + " = " + n * i);
     }
 }
 
-
-// Check prime number
-function isPrime(num) {
-    if (num < 2) {
+// Check whether number is prime
+function checkPrime(n) {
+    if (n < 2) {
         return false;
     }
 
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) {
+    for (let i = 2; i < n; i++) {
+        if (n % i == 0) {
             return false;
         }
     }
@@ -35,115 +33,98 @@ function isPrime(num) {
     return true;
 }
 
+// Find factors of a number
+function findFactors(n) {
+    let factors = [];
 
-// Find factors
-function getFactors(num) {
-    let result = [];
-
-    for (let i = 1; i <= num; i++) {
-        if (num % i === 0) {
-            result.push(i);
+    for (let i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            factors.push(i);
         }
     }
 
-    return result;
+    return factors;
 }
-
 
 // Find sum of digits
-function digitSum(num) {
-    let total = 0;
+function sumOfDigits(n) {
+    let sum = 0;
 
-    while (num > 0) {
-        let digit = num % 10;
-        total = total + digit;
-        num = Math.floor(num / 10);
+    while (n > 0) {
+        let digit = n % 10;
+        sum = sum + digit;
+        n = Math.floor(n / 10);
     }
 
-    return total;
+    return sum;
 }
 
+// Check Armstrong number
+function checkArmstrong(n) {
+    let original = n;
+    let sum = 0;
 
-// Check Armstrong number using power 3
-function isArmstrong(num) {
-    let original = num;
-    let total = 0;
-
-    while (num > 0) {
-        let digit = num % 10;
-
-        total = total + Math.pow(digit, 3);
-
-        num = Math.floor(num / 10);
+    while (n > 0) {
+        let digit = n % 10;
+        sum = sum + digit * digit * digit;
+        n = Math.floor(n / 10);
     }
 
-    return total === original;
+    if (sum == original) {
+        return true;
+    } else {
+        return false;
+    }
 }
-
 
 // Reverse a number
-function reverseNum(num) {
+function reverseNumber(n) {
     let reverse = 0;
 
-    while (num > 0) {
-        let digit = num % 10;
-
+    while (n > 0) {
+        let digit = n % 10;
         reverse = reverse * 10 + digit;
-
-        num = Math.floor(num / 10);
+        n = Math.floor(n / 10);
     }
 
     return reverse;
 }
 
-
-// Run all operations
+// Run the program
 function runProgram() {
 
     let n = 10;
 
-    console.log("SUM OF FIRST N NATURAL NUMBERS");
-    console.log("Number:", n);
-    console.log("Sum:", sumNumbers(n));
+    console.log("Sum of first " + n + " natural numbers:");
+    console.log(findSum(n));
 
+    let numbers = [153, 17, 51, 123, 200];
 
-    let nums = [153, 17, 51, 123, 200];
+    for (let i = 0; i < numbers.length; i++) {
 
-    console.log(" ");
-    console.log("NUMBER OPERATIONS");
+        let num = numbers[i];
 
+        console.log("--------------------");
+        console.log("Number: " + num);
 
-    for (let i = 0; i < nums.length; i++) {
-
-        let num = nums[i];
-
-        console.log(" ");
-        console.log("Number:", num);
-
-        // Prime check
-        if (isPrime(num)) {
+        if (checkPrime(num)) {
             console.log("Prime: Yes");
         } else {
             console.log("Prime: No");
         }
 
-        // Factors
-        console.log("Factors:", getFactors(num));
+        console.log("Factors: " + findFactors(num));
 
-        // Sum of digits
-        console.log("Sum of digits:", digitSum(num));
+        console.log("Sum of digits: " + sumOfDigits(num));
 
-        // Armstrong check
-        if (isArmstrong(num)) {
+        if (checkArmstrong(num)) {
             console.log("Armstrong: Yes");
         } else {
             console.log("Armstrong: No");
         }
 
-        // Reverse
-        console.log("Reverse:", reverseNum(num));
+        console.log("Reverse: " + reverseNumber(num));
 
-        // Table
-        printTable(num);
+        table(num);
     }
 }

@@ -1,64 +1,41 @@
 # JavaScript Number Operations
 
-## About
-
-This project is made using JavaScript. It performs some basic number operations using loops, functions and if-else statements.
+This is a simple JavaScript program for performing different operations on numbers.
 
 ## Operations
 
-The program does the following operations:
+The program performs these operations:
 
-* Finds the sum of first n natural numbers
-* Prints multiplication table
-* Checks whether a number is prime
-* Finds factors of a number
-* Finds sum of digits
-* Checks Armstrong number
-* Reverses a number
+* Sum of first n natural numbers
+* Multiplication table
+* Prime number checking
+* Finding factors
+* Sum of digits
+* Armstrong number checking
+* Reverse of a number
 
-## Numbers Used
+## How to Run
 
-The program uses these numbers:
+1. Open the project folder in VS Code.
+2. Open `index.html` in a browser.
+3. Click the **Run Program** button.
+4. Open the browser console using `F12`.
+5. Check the output in the Console.
 
-* 153
-* 17
-* 51
-* 123
-* 200
+## Example Numbers
 
-For the Armstrong check, the program uses the sum of cubes of the digits.
+The program uses these numbers for testing:
 
-Example:
+`153, 17, 51, 123, 200`
 
-153 = 1³ + 5³ + 3³
+The program also finds the sum of the first 10 natural numbers.
 
-153 = 153
-
-So, 153 is an Armstrong number.
-
-## Technologies
+## Technologies Used
 
 * HTML
 * CSS
 * JavaScript
 
-## How to Run
+## What I Learned
 
-1. Open the project folder in VS Code.
-2. Open `index.html` in the browser.
-3. Click the **Run Program** button.
-4. Open the browser console.
-5. Check the output there.
-
-## Project Files
-
-Task-Number-Operations/
-│
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-
-## Output
-
-The results are displayed in the browser console using `console.log()`.
+In this task, I practiced using `for` loops, `while` loops, conditions, functions, arrays and basic number operations in JavaScript.
