@@ -6,97 +6,83 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: white;
     color: #333;
 }
 
 header {
-    width: 100%;
-    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
+    padding: 15px 5%;
+    border-bottom: 1px solid #ddd;
 }
 
 header h2 {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 header button {
-    background-color: #eef4ff;
-    color: #2463d4;
+    padding: 8px 20px;
     border: none;
-    padding: 10px 30px;
     border-radius: 20px;
-    cursor: pointer;
+    background-color: #e8efff;
+    color: #2463d4;
 }
 
 main {
     width: 90%;
     max-width: 1000px;
-    margin: 15px auto;
+    margin: 20px auto;
 }
 
 .search-box {
     display: flex;
     gap: 10px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .search-box input {
-    width: 180px;
+    width: 200px;
     padding: 10px;
-    border: none;
-    background-color: #f2f3f3;
-    border-radius: 8px;
-    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
 }
 
 .search-box button {
-    padding: 10px 25px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
     background-color: #7025db;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
-.student-container {
+#studentContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 15px;
 }
 
 .student-card {
-    background-color: #f4f5f5;
-    padding: 14px;
+    padding: 15px;
+    background-color: #f3f3f3;
     border-radius: 8px;
-    min-height: 100px;
 }
 
 .student-card p {
-    font-size: 12px;
-    margin-bottom: 12px;
-}
-
-.student-card p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 8px;
+    font-size: 14px;
 }
 
 @media (max-width: 700px) {
-    .student-container {
+
+    #studentContainer {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media (max-width: 500px) {
-    .student-container {
-        grid-template-columns: 1fr;
-    }
 
     .search-box {
         flex-direction: column;
@@ -105,4 +91,9 @@ main {
     .search-box input {
         width: 100%;
     }
+
+    #studentContainer {
+        grid-template-columns: 1fr;
+    }
+
 }

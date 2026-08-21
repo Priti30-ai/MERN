@@ -59,8 +59,11 @@ const studentContainer = document.getElementById("studentContainer");
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
+
 function displayStudents(studentList) {
+
     studentContainer.innerHTML = studentList.map(function (student) {
+
         return `
             <div class="student-card">
                 <p>Student Name: ${student.name}</p>
@@ -69,21 +72,28 @@ function displayStudents(studentList) {
                 <p>Address: ${student.address}</p>
             </div>
         `;
+
     }).join("");
 }
 
+
 function searchStudents() {
+
     const searchText = searchInput.value.toLowerCase();
 
     const filteredStudents = students.filter(function (student) {
+
         return student.name.toLowerCase().includes(searchText);
+
     });
 
     displayStudents(filteredStudents);
 }
 
-searchInput.addEventListener("input", searchStudents);
 
 searchButton.addEventListener("click", searchStudents);
+
+searchInput.addEventListener("input", searchStudents);
+
 
 displayStudents(students);
