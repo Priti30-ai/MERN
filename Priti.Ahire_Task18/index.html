@@ -1,58 +1,33 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Color Box</title>
 
-        <title>Greeting and Color Boxes</title>
-
-        <!-- Linking CSS file -->
         <link rel="stylesheet" href="style.css">
-    </head>
 
+    </head>
     <body>
 
-        <div class="container">
+        <div class="main">
 
-            <!-- Header -->
-            <h1 id="greeting">Hello</h1>
+            <h1 id="heading">Hello</h1>
 
-            <!-- Color Boxes -->
-            <div class="box-container">
-
-                <div class="color-box" data-color="red">
-                    red
-                </div>
-
-                <div class="color-box" data-color="blue">
-                    blue
-                </div>
-
-                <div class="color-box" data-color="green">
-                    green
-                </div>
-
-                <div class="color-box" data-color="yellow">
-                    yellow
-                </div>
-
+            <div class="boxes">
+                <div class="box" data-color="red">red</div>
+                <div class="box" data-color="blue">blue</div>
+                <div class="box" data-color="green">green</div>
+                <div class="box" data-color="yellow">yellow</div>
             </div>
 
-            <!-- Name Input -->
-            <div class="greeting-section">
+            <input type="text" id="name" placeholder="Enter your name">
 
-                <input
-                    type="text"
-                    id="nameInput"
-                    placeholder="Enter your name">
-
-                <button id="greetButton">Greet Me</button>
-
-            </div>
+            <button id="button">Greet</button>
 
         </div>
 
-        <!-- Linking JavaScript file -->
         <script src="script.js"></script>
 
     </body>

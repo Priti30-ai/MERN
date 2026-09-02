@@ -1,100 +1,90 @@
-/* Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
 
-/* Main container */
-.container {
+.main {
     width: 500px;
     margin: 50px auto;
     padding: 30px;
     text-align: center;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Header */
 h1 {
-    margin-bottom: 30px;
-    font-size: 32px;
+    margin-bottom: 25px;
 }
 
-/* Container for boxes */
-.box-container {
+.boxes {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
-/* Individual boxes */
-.color-box {
+.box {
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #eeeeee;
-    border: 2px solid #cccccc;
+    background-color: lightgray;
+    border: 1px solid gray;
     border-radius: 8px;
 
     font-size: 20px;
     font-weight: bold;
-
     cursor: pointer;
+
 }
 
-/* Hover effect */
-.color-box:hover {
-    transform: scale(1.03);
+.box:hover {
+    opacity: 0.8;
 }
 
-/* Input field */
-#nameInput {
+#name {
+    padding: 10px;
     width: 250px;
-    padding: 12px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
     font-size: 16px;
 }
 
-/* Button */
-#greetButton {
-    margin-top: 15px;
-    padding: 12px 25px;
+#button {
+    display: block;
+    margin: 15px auto 0;
+    padding: 10px 25px;
 
     border: none;
     border-radius: 5px;
 
-    background-color: #333333;
+    background-color: black;
     color: white;
 
-    font-size: 16px;
     cursor: pointer;
+    font-size: 16px;
+
 }
 
-/* Button hover effect */
-#greetButton:hover {
-    background-color: #555555;
+#button:hover {
+    background-color: #333;
 }
 
-/* Mobile responsive design */
 @media (max-width: 600px) {
-
-    .container {
-        width: 80%;
-        margin: 30px auto;
+    .main {
+        width: 90%;
     }
 
-    .box-container {
+    .boxes {
         grid-template-columns: 1fr;
     }
 
-    #nameInput {
+    #name {
         width: 80%;
     }
+
 }

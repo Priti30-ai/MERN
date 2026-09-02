@@ -1,35 +1,34 @@
-# Color Box and Greeting Task
+# Color Box and Greeting
 
-## Description
+## About
 
-A simple interactive webpage created using HTML, CSS and JavaScript.
+This is a simple HTML, CSS and JavaScript project.
 
-## Features
+There are four boxes named red, blue, green and yellow. When a box is clicked, its background changes to that color.
 
-- Displays Hello heading
-- Takes user's name
-- Greets the user after button click
-- Contains four colour boxes
-- Changes box background colour when clicked
+The user can also enter their name and click the Greet button. The heading then displays the name.
 
-## Technologies Used
+## Files
 
-- HTML
-- CSS
-- JavaScript
-
-## Project Structure
-
-index.html
-style.css
-script.js
-README.md
+* `index.html` - contains the webpage structure
+* `style.css` - contains the styling
+* `script.js` - contains the JavaScript functionality
+* `README.md` - contains information about the project
 
 ## How to Run
 
-1. Download or clone the project.
-2. Open the project folder.
-3. Open index.html in a browser.
-4. Enter your name.
-5. Click the Greet button.
-6. Click the colour boxes.
+1. Open the project folder.
+2. Open `index.html` in a browser.
+3. Enter your name.
+4. Click the Greet button.
+5. Click the color boxes.
+
+## JavaScript Concepts Used
+
+* `getElementById()`
+* `querySelectorAll()`
+* `addEventListener()`
+* `getAttribute()`
+* `innerText`
+* `style.backgroundColor`
+
