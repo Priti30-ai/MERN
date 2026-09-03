@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Service Booking App</title>
+
+        <!-- Linking CSS file -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <!-- NAVIGATION BAR -->
+
+        <nav class="navbar">
+
+            <div class="logo">
+                Logo
+            </div>
+
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#about">About Us</a>
+            </div>
+
+            <div class="user-section">
+
+                <span class="username">Username</span>
+
+                <button id="logoutButton" class="logout-button">
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+        <!-- MAIN CONTAINER -->
+
+        <main class="main-container">
+
+            <!-- LEFT SECTION -->
+
+            <section class="left-section">
+
+                <!-- Added Items -->
+
+                <div class="card added-items-card">
+
+                    <h2>Added Items</h2>
+
+                    <div class="table-header">
+                        <span>S.No</span>
+                        <span>Service Name</span>
+                        <span>Price</span>
+                    </div>
+
+                    <!-- JavaScript will add services here -->
+                    <div id="addedItems">
+
+                        <div class="empty-message">
+                            <div class="info-icon">i</div>
+
+                            <p>No Items Added</p>
+
+                            <small>
+                                Add items to the cart from the services
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- Total Amount -->
+
+                    <div class="total-section">
+
+                        <strong>Total Amount</strong>
+
+                        <strong>
+                            ₹ <span id="totalAmount">0</span>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <!-- Booking Form -->
+
+                <div class="card booking-card">
+
+                    <h2>Book Now</h2>
+
+                    <form id="bookingForm">
+
+                        <!-- Full Name -->
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="John Doe"
+                            required>
+
+                        <!-- Email -->
+
+                        <div class="two-inputs">
+
+                            <div>
+
+                                <label for="email">
+                                    Email ID
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="example@gmail.com"
+                                    required>
+
+                            </div>
+
+                            <!-- Password -->
+
+                            <div>
+
+                                <label for="password">
+                                    Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            id="bookButton"
+                            class="book-button"
+                            disabled>
+                            Book Now
+                        </button>
+
+                    </form>
+
+                    <p id="bookingMessage" class="booking-message">
+                        Add the items to the cart to book
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- RIGHT SECTION -->
+
+            <section class="right-section" id="services">
+
+                <div class="card services-card">
+
+                    <h2>Browse Our Services</h2>
+
+                    <p class="description">
+                        Click on the add to cart button to add the
+                        services to your cart or press skip.
+                    </p>
+
+                    <hr>
+
+                    <!-- SERVICE DISPLAY -->
+
+                    <div id="serviceDisplay">
+
+                    <!-- JavaScript will display services here -->
+
+                    </div>
+
+                    <!-- CART INFORMATION -->
+
+                    <hr>
+
+                    <div class="cart-info">
+
+                        <span class="info-circle">i</span>
+
+                        <span>
+                            Add the items to the cart and book now
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
