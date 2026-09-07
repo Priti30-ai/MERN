@@ -696,7 +696,7 @@ footer {
     margin: 15px 0 10px;
 }
 
-.footer-brand > a:last-child {
+.footer-brand>a:last-child {
     color: #53667d;
     font-size: 11px;
 }
