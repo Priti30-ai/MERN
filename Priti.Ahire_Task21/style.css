@@ -1,0 +1,828 @@
+/* 1. BASIC RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove horizontal scrolling */
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* 2. REUSABLE CLASSES */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 400;
+    color: #333333;
+    margin-bottom: 60px;
+}
+
+/* 3. BUTTONS */
+
+.btn {
+    display: inline-block;
+
+    padding: 12px 28px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: 0.3s ease;
+
+    cursor: pointer;
+}
+
+
+.btn-primary {
+    background-color: #e67e22;
+
+    border: 2px solid #e67e22;
+
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #cf6d17;
+
+    border-color: #cf6d17;
+}
+
+.btn-secondary {
+    background-color: transparent;
+
+    border: 2px solid #e67e22;
+
+    color: #e67e22;
+}
+
+.btn-secondary:hover {
+    background-color: #e67e22;
+
+    color: white;
+}
+
+/* 4. SECTION 1 - HERO */
+
+.hero-section {
+    min-height: 100vh;
+
+    background-image: url("assets/hero-food.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    min-height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+/* NAVIGATION */
+
+.navbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-top: 25px;
+}
+
+/* Logo */
+
+.logo {
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 50%;
+
+    background-color: #e67e22;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+/* Navigation list */
+
+.nav-links {
+    list-style: none;
+
+    display: flex;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #e67e22;
+}
+
+/* HERO CONTENT */
+
+.hero-content {
+    min-height: calc(100vh - 100px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+.hero-content h1 {
+    color: white;
+
+    font-size: 52px;
+
+    font-weight: 300;
+
+    line-height: 1.3;
+
+    margin-bottom: 30px;
+}
+
+.hero-content h1 span {
+    display: block;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 15px;
+}
+
+/* 5. SECTION 2 - HOW IT WORKS */
+
+.how-section {
+    background-color: #ffffff;
+}
+
+.how-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+/* Phone */
+
+.phone-container {
+    display: flex;
+
+    justify-content: center;
+}
+
+.phone-image {
+    width: 280px;
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+/* Steps */
+
+.steps-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+.step {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.step-number {
+    min-width: 45px;
+
+    height: 45px;
+
+    border: 2px solid #e67e22;
+
+    border-radius: 50%;
+
+    color: #e67e22;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 20px;
+}
+
+.step p {
+    font-size: 17px;
+
+    color: #555555;
+}
+
+/* App buttons */
+
+.app-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+.app-button img {
+    width: 150px;
+
+    height: auto;
+
+    display: block;
+}
+
+/* 6. SECTION 3 - CITIES */
+
+.cities-section {
+    background-color: #f7f7f7;
+}
+
+.city-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.city-card {
+    background-color: white;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+.city-image {
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.city-content {
+    padding: 20px;
+}
+
+.city-content h3 {
+    font-size: 22px;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+.city-content ul {
+    list-style: none;
+}
+
+.city-content li {
+    color: #666666;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+/* Add bullet before each city statistic */
+
+.city-content li::before {
+    content: "•";
+
+    color: #e67e22;
+
+    margin-right: 8px;
+}
+
+/* 7. SECTION 4 - TESTIMONIALS */
+
+.testimonial-section {
+    min-height: 600px;
+
+    background-image: url("assets/testimonial-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+.testimonial-overlay {
+    min-height: 600px;
+
+    background-color: rgba(0, 0, 0, 0.68);
+
+    padding: 80px 0;
+}
+
+.testimonial-title {
+    color: white;
+}
+
+.testimonial-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 50px;
+}
+
+.testimonial {
+    color: white;
+}
+
+.quote-mark {
+    font-size: 60px;
+
+    line-height: 1;
+
+    color: #e67e22;
+
+    height: 50px;
+}
+
+.testimonial p {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+.customer {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.customer img {
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+/* 8. SECTION 5 - PRICING */
+
+.pricing-section {
+    background-color: #f7f7f7;
+}
+
+.pricing-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    align-items: stretch;
+}
+
+.pricing-card {
+    background-color: white;
+
+    padding: 35px;
+
+    border-radius: 5px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.pricing-card.featured {
+    border-top: 4px solid #e67e22;
+}
+
+.pricing-card h3 {
+    font-size: 24px;
+
+    font-weight: 400;
+
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 45px;
+
+    color: #e67e22;
+
+    font-weight: 300;
+}
+
+.price-note {
+    color: #777777;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+.features {
+    list-style: none;
+
+    margin-bottom: 30px;
+
+    flex-grow: 1;
+}
+
+.features li {
+    padding: 9px 0;
+
+    color: #555555;
+
+    font-size: 15px;
+}
+
+.check {
+    color: #e67e22;
+
+    font-weight: bold;
+
+    margin-right: 8px;
+}
+
+.cross {
+    color: #999999;
+
+    font-weight: bold;
+
+    margin-right: 8px;
+}
+
+.pricing-card .btn {
+    text-align: center;
+}
+
+/* 9. SECTION 6 - FOOTER */
+
+.footer {
+    background-color: #333333;
+
+    color: white;
+
+    padding-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 35px;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #dddddd;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #e67e22;
+}
+
+/* Social icons */
+
+.social-links {
+    display: flex;
+
+    gap: 15px;
+}
+
+.social-links a {
+    width: 35px;
+
+    height: 35px;
+
+    border: 1px solid #777777;
+
+    border-radius: 50%;
+
+    color: white;
+
+    text-decoration: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 14px;
+}
+
+.social-links a:hover {
+    background-color: #e67e22;
+
+    border-color: #e67e22;
+}
+
+/* Copyright */
+
+.copyright {
+    border-top: 1px solid #555555;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #aaaaaa;
+
+    font-size: 13px;
+}
+
+/* 10. TABLET 834px and below */
+
+@media (max-width: 834px) {
+
+    /* Navigation */
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    /* Hero */
+
+    .hero-content {
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    /* How it works */
+
+    .how-content {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    /* Cities become 2 columns */
+
+    .city-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Testimonials */
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    /* Pricing */
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer */
+
+    .footer-content {
+        flex-direction: column;
+
+        gap: 25px;
+
+        text-align: center;
+    }
+
+}
+
+/* 11. MOBILE 390px and below */
+
+@media (max-width: 390px) {
+
+    /* Container */
+
+    .container {
+        width: 92%;
+    }
+
+    /* Logo */
+
+    .logo {
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 19px;
+    }
+
+    /* Navigation becomes vertical */
+
+    .nav-links {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    /* Hero */
+
+    .hero-content {
+        min-height: auto;
+
+        padding: 80px 0 100px;
+    }
+
+    .hero-content h1 {
+        font-size: 29px;
+
+        line-height: 1.4;
+    }
+
+    /* Hero buttons */
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    /* Section spacing */
+
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 25px;
+
+        margin-bottom: 40px;
+    }
+
+    /* Steps */
+
+    .step {
+        align-items: flex-start;
+    }
+
+    .step p {
+        font-size: 15px;
+    }
+
+    /* App buttons */
+
+    .app-buttons {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    /* Cities */
+
+    .city-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Pricing */
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card {
+        padding: 25px;
+    }
+
+    /* Footer */
+
+    .footer-links {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+}
