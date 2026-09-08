@@ -97,9 +97,8 @@ body {
 
 .hero-section {
     min-height: 100vh;
-
-    background-image: url("assets/hero-food.jpg");
-
+    
+    background-image: url("assets/hero-food.webp");
     background-size: cover;
 
     background-position: center;
@@ -380,7 +379,7 @@ body {
 .testimonial-section {
     min-height: 600px;
 
-    background-image: url("assets/testimonial-bg.jpg");
+    background-image: url("assets/testimonial-bg.avif");
 
     background-size: cover;
 
