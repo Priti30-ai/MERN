@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Project Workspace - AI Collaboration</title>
+
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body class="bg-white text-gray-900">
+
+        <!-- NAVIGATION BAR  -->
+
+        <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+
+            <div class="max-w-6xl mx-auto px-6 py-4">
+
+                <div class="flex items-center justify-between">
+
+                    <!-- Logo -->
+                    <div class="text-lg font-bold text-gray-900">
+                        + Project
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="hidden md:flex items-center gap-7 text-sm">
+
+                        <a href="#product"
+                            class="text-gray-600 hover:text-purple-700 transition">
+                            Product
+                        </a>
+
+                        <a href="#solutions"
+                            class="text-gray-600 hover:text-purple-700 transition">
+                            Solutions
+                        </a>
+
+                        <a href="#resources"
+                            class="text-gray-600 hover:text-purple-700 transition">
+                            Resources
+                        </a>
+
+                        <a href="#pricing"
+                            class="text-gray-600 hover:text-purple-700 transition">
+                            Pricing
+                        </a>
+
+                        <a href="#login"
+                            class="text-gray-600 hover:text-purple-700 transition">
+                            Log in
+                        </a>
+
+                        <!-- Navbar CTA -->
+                        <a href="#get-started"
+                            class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">
+                            Get AI free
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+        <!-- HERO SECTION -->
+
+        <main>
+
+            <section
+                id="get-started"
+                class="relative min-h-[720px] overflow-hidden
+                   bg-gradient-to-b from-orange-50 via-orange-50/40 to-white">
+
+                <div class="max-w-6xl mx-auto px-6 pt-20">
+
+                    <!-- Hero Content -->
+
+                    <div class="text-center max-w-3xl mx-auto">
+
+                        <p class="text-sm font-semibold text-purple-700 mb-4">
+                            THE CONNECTED WORKSPACE
+                        </p>
+
+                        <h1
+                            class="text-4xl md:text-6xl font-bold
+                               leading-tight tracking-tight text-gray-900">
+
+                            Write, plan, share.
+                            <br>
+
+                            <span class="text-gray-800">
+                                With AI at your side.
+                            </span>
+
+                        </h1>
+
+                        <p
+                            class="mt-6 text-base md:text-lg
+                               text-gray-600 leading-relaxed max-w-2xl mx-auto">
+
+                            It is the connected workspace where better,
+                            faster work happens. Now with AI, your team
+                            can write, plan, organize and collaborate
+                            more efficiently.
+
+                        </p>
+
+                        <!-- CTA BUTTONS -->
+
+                        <div
+                            class="relative flex justify-center
+                               items-center gap-4 mt-8">
+
+                            <!-- First Button -->
+                            <a
+                                href="#ai"
+                                class="relative bg-gray-900 text-white
+                                   px-6 py-3 rounded-md
+                                   font-medium shadow-sm
+                                   hover:bg-gray-700 transition">
+
+                                Get AI free →
+                            </a>
+
+                            <!-- Second Button -->
+                            <a
+                                href="#demo"
+                                class="relative bg-blue-600 text-white
+                                   px-6 py-3 rounded-md
+                                   font-medium shadow-sm
+                                   hover:bg-blue-700 transition">
+
+                                Request a demo
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- DASHBOARD PREVIEW -->
+
+                    <div
+                        class="relative max-w-4xl mx-auto
+                           h-[430px] mt-12">
+
+                        <!-- Main Dashboard Image -->
+
+                        <div
+                            class="absolute left-1/2
+                               -translate-x-1/2
+                               top-8
+                               w-[280px] sm:w-[420px]
+                               md:w-[520px]
+                               z-10">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80"
+                                alt="Project dashboard workspace"
+                                class="w-full h-[260px] md:h-[310px]
+                                   object-cover rounded-lg
+                                   shadow-2xl border-4
+                                   border-white">
+
+                        </div>
+
+                        <!-- TASKS FLOATING CARD -->
+
+                        <div
+                            class="absolute
+                               left-0 md:left-8
+                               top-24
+                               bg-white
+                               rounded-lg
+                               shadow-lg
+                               p-4
+                               w-52
+                               z-20">
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="w-9 h-9 rounded-full
+                                       bg-purple-100
+                                       flex items-center justify-center">
+
+                                    📋
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-xs text-gray-500">
+                                        Tasks
+                                    </p>
+
+                                    <p
+                                        class="text-sm font-semibold text-gray-800">
+                                        12 tasks completed today
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PROJECT STATUS CARD -->
+
+                        <div
+                            class="absolute
+                               right-0 md:right-8
+                               top-20
+                               bg-white
+                               rounded-lg
+                               shadow-lg
+                               p-4
+                               w-48
+                               z-20">
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="w-9 h-9 rounded-full
+                                       bg-green-100
+                                       text-green-600
+                                       flex items-center justify-center
+                                       font-bold">
+
+                                    ✓
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-xs text-gray-500">
+                                        Project Status
+                                    </p>
+
+                                    <p
+                                        class="text-sm font-semibold text-green-600">
+                                        On Track
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- TEAM ACTIVITY CARD -->
+
+                        <div
+                            class="absolute
+                               right-8 md:right-24
+                               bottom-5
+                               bg-white
+                               rounded-lg
+                               shadow-lg
+                               p-4
+                               w-52
+                               z-20">
+
+                            <p class="text-xs text-gray-500 mb-2">
+                                Team Activity
+                            </p>
+
+                            <div class="flex items-center justify-between">
+
+                                <!-- User Images -->
+
+                                <div class="flex -space-x-2">
+
+                                    <img
+                                        src="https://i.pravatar.cc/40?img=12"
+                                        alt="Team member"
+                                        class="w-8 h-8 rounded-full
+                                           border-2 border-white">
+
+                                    <img
+                                        src="https://i.pravatar.cc/40?img=32"
+                                        alt="Team member"
+                                        class="w-8 h-8 rounded-full
+                                           border-2 border-white">
+
+                                    <img
+                                        src="https://i.pravatar.cc/40?img=47"
+                                        alt="Team member"
+                                        class="w-8 h-8 rounded-full
+                                           border-2 border-white">
+
+                                </div>
+
+                                <span
+                                    class="text-sm font-semibold text-gray-700">
+                                    +5 online
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- SIMPLE EXTRA SECTIONS -->
+
+            <section
+                id="product"
+                class="py-20 bg-white">
+
+                <div class="max-w-5xl mx-auto px-6 text-center">
+
+                    <h2 class="text-3xl font-bold mb-4">
+                        Everything your team needs
+                    </h2>
+
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Plan projects, collaborate with your team,
+                        organize tasks and use AI to work smarter.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section
+                id="solutions"
+                class="py-20 bg-gray-50">
+
+                <div class="max-w-5xl mx-auto px-6 text-center">
+
+                    <h2 class="text-3xl font-bold mb-4">
+                        Smart collaboration
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Bring your team, projects and ideas together
+                        in one connected workspace.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section
+                id="resources"
+                class="py-20 bg-white">
+
+                <div class="max-w-5xl mx-auto px-6 text-center">
+
+                    <h2 class="text-3xl font-bold mb-4">
+                        Powerful resources
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Access everything required to keep your projects
+                        moving forward.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section
+                id="pricing"
+                class="py-20 bg-gray-50">
+
+                <div class="max-w-5xl mx-auto px-6 text-center">
+
+                    <h2 class="text-3xl font-bold mb-4">
+                        Simple pricing
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Start free and upgrade whenever your team needs more.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section
+                id="login"
+                class="py-20 bg-white">
+
+                <div class="max-w-5xl mx-auto px-6 text-center">
+
+                    <h2 class="text-3xl font-bold mb-4">
+                        Welcome back
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Log in to continue working with your team.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- FIXED CHAT WIDGET -->
+
+        <button
+            id="chatButton"
+            class="fixed
+               bottom-6
+               right-6
+               z-50
+               w-14
+               h-14
+               rounded-full
+               bg-gray-900
+               text-white
+               shadow-xl
+               flex
+               items-center
+               justify-center
+               hover:bg-purple-700
+               transition"
+            aria-label="Open chat">
+
+            💬
+
+        </button>
+
+        <!-- JavaScript -->
+        <script src="script.js"></script>
+
+    </body>
+</html>
