@@ -1,0 +1,28 @@
+/* BASIC PAGE SETTINGS */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* IMAGE HOVER EFFECT */
+
+img {
+    display: block;
+}
+
+
+/* RESPONSIVE MOBILE ADJUSTMENTS */
+
+@media (max-width: 768px) {
+
+    .hero-card {
+        transform: scale(0.9);
+    }
+
+}
