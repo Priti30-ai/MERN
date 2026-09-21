@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: #101827;
+  color: #f8fbff;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 64px 32px;
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(0, 214, 201, 0.2), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255, 91, 146, 0.2), transparent 35%),
+    #101827;
+}
+
+.app h1 {
+  margin: 0 0 42px;
+  color: #ffffff;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  letter-spacing: 0.02em;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 250px));
+  justify-content: center;
+  gap: 28px;
+}
+
+.card {
+  min-height: 180px;
+  padding: 28px 24px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background:
+    linear-gradient(#172338, #172338) padding-box,
+    linear-gradient(135deg, #00d6c9, #6c63ff 48%, #ff5b92) border-box;
+  position: relative;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.4);
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  color: #ffffff;
+  font-size: 1.45rem;
+}
+
+.card p {
+  color: #d9e5f2;
+  line-height: 1.5;
+}
+
+@media (max-width: 850px) {
+  .card-container {
+    grid-template-columns: repeat(2, minmax(0, 250px));
+  }
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 44px 20px;
+  }
+
+  .card-container {
+    grid-template-columns: minmax(0, 320px);
+  }
+}
