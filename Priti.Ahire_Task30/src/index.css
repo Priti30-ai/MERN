@@ -118,6 +118,20 @@ h1 {
   overflow-y: auto;
 }
 
+/* Move history rows */
+
+.move-row {
+  display: grid;
+
+  grid-template-columns: 35px 70px 70px;
+
+  padding: 8px 0;
+
+  border-bottom: 1px solid #ddd;
+}
+
+/* Buttons */
+
 .controls {
   margin-top: 25px;
 
@@ -148,8 +162,14 @@ button:hover {
   opacity: 0.8;
 }
 
-@media (max-width: 800px) {
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
+/* Mobile responsive design */
+
+@media (max-width: 800px) {
   .game-container {
     flex-direction: column;
     align-items: center;
