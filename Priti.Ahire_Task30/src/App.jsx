@@ -8,26 +8,28 @@ import MoveHistory from "./components/MoveHistory";
 import "./index.css";
 
 function App() {
-  // Chess game
+  // Create a new chess game
   const [game, setGame] = useState(new Chess());
 
-  // Current turn: "w" = White, "b" = Black
+  // Current turn
+  // "w" = White
+  // "b" = Black
   const [currentTurn, setCurrentTurn] = useState("w");
 
-  // Move history
+  // Store all moves
   const [moves, setMoves] = useState([]);
 
-  // Game status message
+  // Status shown above the board
   const [gameStatus, setGameStatus] = useState("White's turn");
 
-  // 10 minutes for each player
+  // 10 minutes = 600 seconds
   const [whiteTime, setWhiteTime] = useState(600);
   const [blackTime, setBlackTime] = useState(600);
 
-  // Pause / Resume
+  // Pause state
   const [isPaused, setIsPaused] = useState(false);
 
-  // Check whether game has finished
+  // Game finished or not
   const [gameOver, setGameOver] = useState(false);
 
   // Update game status
@@ -73,7 +75,7 @@ function App() {
 
   // Make a chess move
   const makeMove = (from, to) => {
-    // Don't allow moves when paused or game is over
+    // Do not allow moves when paused or game is over
     if (isPaused || gameOver) {
       return false;
     }
@@ -96,10 +98,11 @@ function App() {
       // Change turn
       setCurrentTurn(game.turn());
 
-      // Update game status
+      // Update status
       updateGameStatus(game);
 
-      // Update board
+      // Create a new Chess object
+      // so React updates correctly
       setGame(new Chess(game.fen()));
 
       return true;
@@ -108,7 +111,7 @@ function App() {
     }
   };
 
-  // When player's timer reaches zero
+  // Handle timer reaching zero
   const handleTimeout = (player) => {
     setGameOver(true);
 
@@ -140,7 +143,6 @@ function App() {
 
   return (
     <div className="app">
-
       <h1>♟ Offline Chess Game</h1>
 
       <p className="status">
@@ -148,7 +150,6 @@ function App() {
       </p>
 
       <div className="game-container">
-
         <div className="game-area">
 
           {/* Black Timer */}
@@ -181,12 +182,10 @@ function App() {
 
         {/* Move History */}
         <MoveHistory moves={moves} />
-
       </div>
 
-      {/* Buttons */}
+      {/* Controls */}
       <div className="controls">
-
         <button
           onClick={() => setIsPaused(!isPaused)}
           disabled={gameOver}
@@ -197,9 +196,7 @@ function App() {
         <button onClick={resetGame}>
           New Game
         </button>
-
       </div>
-
     </div>
   );
 }
