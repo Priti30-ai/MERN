@@ -1,46 +1,56 @@
-function MoveHistory({ moves }) {
-    const movePairs = [];
+function MoveHistory({
+  moves,
+}) {
+  const movePairs = [];
 
-    // Convert moves into pairs:
-    // White move + Black move
-    for (let i = 0; i < moves.length; i += 2) {
-        movePairs.push({
-            number: i / 2 + 1,
-            white: moves[i],
-            black: moves[i + 1] || "",
-        });
-    }
+  // Convert moves into:
+  // 1. White move | Black move
+  // 2. White move | Black move
+  for (
+    let i = 0;
+    i < moves.length;
+    i += 2
+  ) {
+    movePairs.push({
+      number: i / 2 + 1,
+      white: moves[i],
+      black:
+        moves[i + 1] || "",
+    });
+  }
 
-    return (
-        <div className="move-history">
-            <h2>Move History</h2>
+  return (
+    <div className="move-history">
+      <h2>Move History</h2>
 
-            {moves.length === 0 ? (
-                <p>No moves yet</p>
-            ) : (
-                <div>
-                    {movePairs.map((move) => (
-                        <div
-                            className="move-row"
-                            key={move.number}
-                        >
-                            <span>
-                                {move.number}.
-                            </span>
+      {moves.length === 0 ? (
+        <p>No moves yet</p>
+      ) : (
+        <div className="moves-list">
+          {movePairs.map(
+            (move) => (
+              <div
+                className="move-row"
+                key={move.number}
+              >
+                <span>
+                  {move.number}.
+                </span>
 
-                            <span>
-                                {move.white}
-                            </span>
+                <span>
+                  {move.white}
+                </span>
 
-                            <span>
-                                {move.black}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-            )}
+                <span>
+                  {move.black}
+                </span>
+              </div>
+            )
+          )}
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default MoveHistory;

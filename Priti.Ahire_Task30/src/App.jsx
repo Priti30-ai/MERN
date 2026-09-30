@@ -1,130 +1,262 @@
-import { useState } from "react";
-import { Chess } from "chess.js";
+import { useCallback, useState } from "react";
 
 import ChessBoard from "./components/ChessBoard";
 import Timer from "./components/Timer";
 import MoveHistory from "./components/MoveHistory";
 
+import {
+  createInitialBoard,
+  validateMove,
+  makeMoveOnBoard,
+  getNextEnPassantTarget,
+  createMoveNotation,
+  getGameStatus,
+  squareToPosition,
+} from "./chess/chessEngine";
+
 import "./index.css";
 
-function App() {
-  // Create a new chess game
-  const [game, setGame] = useState(new Chess());
+const INITIAL_TIME = 600;
 
-  // Current turn
-  // "w" = White
-  // "b" = Black
+function App() {
+  // ----------------------------------------------------------
+  // Game State
+  // ----------------------------------------------------------
+
+  const [board, setBoard] = useState(createInitialBoard);
+
+  // "w" = White, "b" = Black
   const [currentTurn, setCurrentTurn] = useState("w");
 
-  // Store all moves
   const [moves, setMoves] = useState([]);
 
-  // Status shown above the board
   const [gameStatus, setGameStatus] = useState("White's turn");
 
-  // 10 minutes = 600 seconds
-  const [whiteTime, setWhiteTime] = useState(600);
-  const [blackTime, setBlackTime] = useState(600);
+  const [notification, setNotification] = useState("");
 
-  // Pause state
+  // Used for en passant validation
+  const [enPassantTarget, setEnPassantTarget] = useState(null);
+
+  // 10 minutes for each player
+  const [whiteTime, setWhiteTime] = useState(INITIAL_TIME);
+  const [blackTime, setBlackTime] = useState(INITIAL_TIME);
+
   const [isPaused, setIsPaused] = useState(false);
 
-  // Game finished or not
   const [gameOver, setGameOver] = useState(false);
 
-  // Update game status
-  const updateGameStatus = (chessGame) => {
-    // Checkmate
-    if (chessGame.isCheckmate()) {
-      setGameOver(true);
+  // ----------------------------------------------------------
+  // Notification
+  // ----------------------------------------------------------
 
-      if (chessGame.turn() === "w") {
-        setGameStatus("Checkmate! Black wins");
-      } else {
-        setGameStatus("Checkmate! White wins");
-      }
+  const showNotification = useCallback((message) => {
+    setNotification(message);
 
-      return;
-    }
+    window.setTimeout(() => {
+      setNotification("");
+    }, 2500);
+  }, []);
 
-    // Draw
-    if (chessGame.isDraw()) {
-      setGameOver(true);
-      setGameStatus("Game Draw");
-      return;
-    }
+  // ----------------------------------------------------------
+  // Make Chess Move
+  // ----------------------------------------------------------
 
-    // Check
-    if (chessGame.isCheck()) {
-      if (chessGame.turn() === "w") {
-        setGameStatus("White is in check");
-      } else {
-        setGameStatus("Black is in check");
-      }
-
-      return;
-    }
-
-    // Normal turn
-    if (chessGame.turn() === "w") {
-      setGameStatus("White's turn");
-    } else {
-      setGameStatus("Black's turn");
-    }
-  };
-
-  // Make a chess move
-  const makeMove = (from, to) => {
-    // Do not allow moves when paused or game is over
-    if (isPaused || gameOver) {
-      return false;
-    }
-
-    try {
-      const move = game.move({
-        from: from,
-        to: to,
-        promotion: "q",
-      });
-
-      // Invalid move
-      if (!move) {
+  const makeMove = useCallback(
+    (from, to) => {
+      // Prevent moves while paused
+      if (isPaused) {
+        showNotification(
+          "Game is paused. Resume the game to move."
+        );
         return false;
       }
 
-      // Update move history
-      setMoves(game.history());
+      // Prevent moves after game ends
+      if (gameOver) {
+        showNotification(
+          "Game is over. Start a new game."
+        );
+        return false;
+      }
 
-      // Change turn
-      setCurrentTurn(game.turn());
+      // ------------------------------------------------------
+      // Get source and destination positions
+      // ------------------------------------------------------
 
-      // Update status
-      updateGameStatus(game);
+      const fromPosition = squareToPosition(from);
+      const toPosition = squareToPosition(to);
 
-      // Create a new Chess object
-      // so React updates correctly
-      setGame(new Chess(game.fen()));
+      const movingPiece =
+        board[fromPosition.row][fromPosition.col];
+
+      // ------------------------------------------------------
+      // Validate Move
+      // ------------------------------------------------------
+
+      const validation = validateMove(
+        board,
+        from,
+        to,
+        currentTurn,
+        enPassantTarget
+      );
+
+      // Illegal move
+      if (!validation.valid) {
+        showNotification(
+          validation.reason || "Illegal move."
+        );
+
+        return false;
+      }
+
+      // ------------------------------------------------------
+      // Capture Information
+      // ------------------------------------------------------
+
+      const capturedPiece =
+        board[toPosition.row][toPosition.col];
+
+      // ------------------------------------------------------
+      // Promotion
+      // ------------------------------------------------------
+
+      const isPromotion =
+        movingPiece?.type === "p" &&
+        (toPosition.row === 0 ||
+          toPosition.row === 7);
+
+      // Promote pawn to Queen
+      const promotionPiece = isPromotion ? "q" : null;
+
+      // ------------------------------------------------------
+      // Create Updated Board
+      // ------------------------------------------------------
+
+      const updatedBoard = makeMoveOnBoard(
+        board,
+        from,
+        to,
+        validation.specialMove,
+        promotionPiece
+      );
+
+      // ------------------------------------------------------
+      // Update En Passant Target
+      // ------------------------------------------------------
+
+      const nextEnPassantTarget =
+        getNextEnPassantTarget(
+          board,
+          from,
+          to,
+          validation.specialMove
+        );
+
+      // ------------------------------------------------------
+      // Create Move Notation
+      // ------------------------------------------------------
+
+      const notation = createMoveNotation(
+        board,
+        from,
+        to,
+        validation.specialMove,
+        capturedPiece,
+        promotionPiece
+      );
+
+      // ------------------------------------------------------
+      // Update React State
+      // ------------------------------------------------------
+
+      setBoard(updatedBoard);
+
+      setEnPassantTarget(
+        nextEnPassantTarget
+      );
+
+      setMoves((previousMoves) => [
+        ...previousMoves,
+        notation,
+      ]);
+
+      // ------------------------------------------------------
+      // Switch Player
+      // ------------------------------------------------------
+
+      const nextTurn =
+        currentTurn === "w" ? "b" : "w";
+
+      setCurrentTurn(nextTurn);
+
+      // ------------------------------------------------------
+      // Check Game Status
+      // ------------------------------------------------------
+
+      const nextStatus = getGameStatus(
+        updatedBoard,
+        nextTurn,
+        nextEnPassantTarget
+      );
+
+      setGameStatus(nextStatus.message);
+
+      // ------------------------------------------------------
+      // Checkmate / Stalemate
+      // ------------------------------------------------------
+
+      if (
+        nextStatus.status === "checkmate" ||
+        nextStatus.status === "stalemate"
+      ) {
+        setGameOver(true);
+      }
 
       return true;
-    } catch (error) {
-      return false;
-    }
-  };
+    },
+    [
+      board,
+      currentTurn,
+      enPassantTarget,
+      gameOver,
+      isPaused,
+      showNotification,
+    ]
+  );
 
-  // Handle timer reaching zero
-  const handleTimeout = (player) => {
+  // ----------------------------------------------------------
+  // Timer Timeout
+  // ----------------------------------------------------------
+
+  const handleTimeout = useCallback((player) => {
     setGameOver(true);
 
     if (player === "White") {
-      setGameStatus("Time up! Black wins");
+      setGameStatus("Time up! Black wins.");
     } else {
-      setGameStatus("Time up! White wins");
+      setGameStatus("Time up! White wins.");
     }
+  }, []);
+
+  // ----------------------------------------------------------
+  // Pause / Resume
+  // ----------------------------------------------------------
+
+  const togglePause = () => {
+    if (gameOver) {
+      return;
+    }
+
+    setIsPaused((previous) => !previous);
   };
 
-  // Start a new game
+  // ----------------------------------------------------------
+  // Reset Game
+  // ----------------------------------------------------------
+
   const resetGame = () => {
-    setGame(new Chess());
+    setBoard(createInitialBoard());
 
     setCurrentTurn("w");
 
@@ -132,25 +264,49 @@ function App() {
 
     setGameStatus("White's turn");
 
-    setWhiteTime(600);
+    setNotification("");
 
-    setBlackTime(600);
+    setEnPassantTarget(null);
+
+    setWhiteTime(INITIAL_TIME);
+
+    setBlackTime(INITIAL_TIME);
 
     setIsPaused(false);
 
     setGameOver(false);
   };
 
+  // ----------------------------------------------------------
+  // UI
+  // ----------------------------------------------------------
+
   return (
-    <div className="app">
+    <main className="app">
       <h1>♟ Offline Chess Game</h1>
 
+      {/* Game Status */}
       <p className="status">
         {gameStatus}
       </p>
 
+      {/* Illegal Move / Game Notification */}
+      {notification && (
+        <div
+          className="notification"
+          role="alert"
+        >
+          ⚠ {notification}
+        </div>
+      )}
+
       <div className="game-container">
-        <div className="game-area">
+
+        {/* ==================================================
+            Chess Game Area
+        ================================================== */}
+
+        <section className="game-area">
 
           {/* Black Timer */}
           <Timer
@@ -164,8 +320,10 @@ function App() {
 
           {/* Chess Board */}
           <ChessBoard
-            game={game}
+            board={board}
+            currentTurn={currentTurn}
             makeMove={makeMove}
+            gameOver={gameOver}
           />
 
           {/* White Timer */}
@@ -178,26 +336,43 @@ function App() {
             onTimeout={handleTimeout}
           />
 
-        </div>
+        </section>
 
-        {/* Move History */}
-        <MoveHistory moves={moves} />
+        {/* ==================================================
+            Move History
+        ================================================== */}
+
+        <aside className="move-history-area">
+          <MoveHistory moves={moves} />
+        </aside>
+
       </div>
 
-      {/* Controls */}
+      {/* ====================================================
+          Game Controls
+      ==================================================== */}
+
       <div className="controls">
+
         <button
-          onClick={() => setIsPaused(!isPaused)}
+          type="button"
+          onClick={togglePause}
           disabled={gameOver}
         >
-          {isPaused ? "Resume Game" : "Pause Game"}
+          {isPaused
+            ? "Resume Game"
+            : "Pause Game"}
         </button>
 
-        <button onClick={resetGame}>
+        <button
+          type="button"
+          onClick={resetGame}
+        >
           New Game
         </button>
+
       </div>
-    </div>
+    </main>
   );
 }
 
