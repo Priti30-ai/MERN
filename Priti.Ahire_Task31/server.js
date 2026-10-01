@@ -13,10 +13,10 @@ function serveFile(res, filePath, contentType, statusCode = 200) {
             console.error("File reading error:", error);
 
             res.writeHead(500, {
-                "Content-Type": "text/plain"
+                "Content-Type": "text/plain; charset=utf-8"
             });
 
-            res.end("500 - Internal Server Error");
+            res.end("500 - Internal Server Error: The requested file could not be read.");
             return;
         }
 
@@ -32,13 +32,13 @@ function serveFile(res, filePath, contentType, statusCode = 200) {
  * Creates the HTTP server.
  */
 const server = http.createServer((req, res) => {
-    const requestUrl = new URL(req.url, "http://localhost").pathname.replace(/\/+$/, "") || "/";
+    const requestUrl = new URL(req.url, "http://localhost").pathname;
 
-    console.log(`${req.method} ${requestUrl}`);
+    console.log(`${req.method} ${req.url}`);
 
     if (req.method !== "GET") {
         res.writeHead(405, {
-            "Content-Type": "text/plain",
+            "Content-Type": "text/plain; charset=utf-8",
             "Allow": "GET"
         });
         res.end("405 - Method Not Allowed");
@@ -48,42 +48,37 @@ const server = http.createServer((req, res) => {
     switch (requestUrl) {
         case "/":
         case "/home":
-        case "/home.html":
-        case "/index.html":
             serveFile(
                 res,
                 path.join(__dirname, "pages", "home.html"),
-                "text/html",
+                "text/html; charset=utf-8",
                 200
             );
             break;
 
         case "/about":
-        case "/about.html":
             serveFile(
                 res,
                 path.join(__dirname, "pages", "about.html"),
-                "text/html",
+                "text/html; charset=utf-8",
                 200
             );
             break;
 
         case "/contact":
-        case "/contact.html":
             serveFile(
                 res,
                 path.join(__dirname, "pages", "contact.html"),
-                "text/html",
+                "text/html; charset=utf-8",
                 200
             );
             break;
 
         case "/style.css":
-        case "/public/style.css":
             serveFile(
                 res,
                 path.join(__dirname, "public", "style.css"),
-                "text/css",
+                "text/css; charset=utf-8",
                 200
             );
             break;
@@ -92,12 +87,11 @@ const server = http.createServer((req, res) => {
             serveFile(
                 res,
                 path.join(__dirname, "pages", "404.html"),
-                "text/html",
+                "text/html; charset=utf-8",
                 404
             );
             break;
     }
-
 });
 
 /*
