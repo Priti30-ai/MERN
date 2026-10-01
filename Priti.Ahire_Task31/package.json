@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-web-server",
+  "version": "1.0.0",
+  "description": "Basic web server using Node.js HTTP module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "http",
+    "web-server",
+    "routing"
+  ],
+  "author": "Priti Ahire",
+  "license": "ISC"
+}
