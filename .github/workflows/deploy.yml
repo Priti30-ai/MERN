@@ -42,13 +42,22 @@ jobs:
         working-directory: Priti.Ahire_Task30
         run: npm run build
 
+      - name: Assemble Pages site
+        run: |
+          mkdir -p _site
+          cp -R Priti.Ahire_Task30/dist/. _site/
+          mkdir -p _site/Priti.Ahire_Task32/API_Documentation
+          cp Priti.Ahire_Task32/index.html _site/Priti.Ahire_Task32/
+          cp Priti.Ahire_Task32/API_Documentation/API_Documentation.html _site/Priti.Ahire_Task32/API_Documentation/
+          cp Priti.Ahire_Task32/API_Documentation/API_Documentation.pdf _site/Priti.Ahire_Task32/API_Documentation/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Priti.Ahire_Task30/dist
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
