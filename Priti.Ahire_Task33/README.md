@@ -2,7 +2,10 @@
 
 **Plan it. Track it. Finish it.**
 
-TaskFlow is a full-stack MERN (MongoDB, Express, React, Node.js) application developed for Task 33 to manage tasks with persistent local MongoDB storage.
+TaskFlow is a full-stack MERN (MongoDB, Express, React, Node.js) task management application deployed across modern cloud services:
+- **Frontend**: React + Vite on GitHub Pages
+- **Backend**: Node.js + Express on Render Web Service
+- **Database**: MongoDB Atlas cloud cluster
 
 ## Features
 
@@ -20,21 +23,23 @@ TaskFlow is a full-stack MERN (MongoDB, Express, React, Node.js) application dev
 
 - **Frontend**: React 19, Vite, Axios, Vanilla CSS
 - **Backend**: Node.js, Express.js, Mongoose, CORS, dotenv
-- **Database**: Local MongoDB (`mongodb://127.0.0.1:27017/task33`)
-- **Frontend Hosting**: GitHub Pages (`https://priti30-ai.github.io/MERN/`)
+- **Database**: MongoDB Atlas
+- **Cloud Hosting**:
+  - Frontend: GitHub Pages (`https://priti30-ai.github.io/MERN/`)
+  - Backend: Render Web Service (`taskflow-api`)
 
 ## Architecture
 
 ```text
-React Frontend (Vite)
-       ↓
-     Axios
-       ↓
- Express REST API (Node.js)
-       ↓
-    Mongoose
-       ↓
-  Local MongoDB
+GitHub Pages React Frontend (Vite)
+              ↓
+            Axios
+              ↓
+  Render Express API (Node.js)
+              ↓
+           Mongoose
+              ↓
+        MongoDB Atlas
 ```
 
 ## Project Structure
@@ -78,62 +83,6 @@ Priti.Ahire_Task33/
     └── vite.config.js
 ```
 
-## Local Development & Setup
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community) installed and running locally on port `27017`
-
-### 1. Backend Setup
-
-1. Open a terminal and navigate to the backend directory:
-   ```bash
-   cd Priti.Ahire_Task33/backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create your `.env` configuration file from `.env.example`:
-   ```bash
-   copy .env.example .env
-   ```
-   Ensure `.env` contains:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/task33
-   ```
-4. Start the backend server:
-   ```bash
-   npm start
-   ```
-   The backend API will run on `http://localhost:5000`.
-
-### 2. Frontend Setup
-
-1. Open a second terminal and navigate to the frontend directory:
-   ```bash
-   cd Priti.Ahire_Task33/frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create your `.env` configuration file from `.env.example`:
-   ```bash
-   copy .env.example .env
-   ```
-   Ensure `.env` contains:
-   ```env
-   VITE_API_URL=http://localhost:5000/api
-   ```
-4. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-   The React application will be available at `http://localhost:5173`.
-
 ## REST API Endpoints
 
 | Method | Endpoint | Description |
@@ -146,20 +95,78 @@ Priti.Ahire_Task33/
 | `PATCH` | `/api/todos/:id/status` | Update task status (`completed`: boolean) |
 | `DELETE` | `/api/todos/:id` | Delete a task |
 
-## Validation & Verification
+## Local Development & Setup
 
-### Backend Verification
-- Ensure local MongoDB service is running (`MongoDB Server` on `mongodb://127.0.0.1:27017/task33`).
-- Start the server: `npm start` in `backend/`.
-- Verify health check: `GET http://localhost:5000/api/health`.
+### 1. Backend Setup
 
-### Frontend Verification
-- Lint check: `npm run lint` in `frontend/`.
-- Production build: `npm run build` in `frontend/`.
-- Assets build correctly with `/MERN/` base path for GitHub Pages compatibility.
+1. Navigate to the backend directory:
+   ```bash
+   cd Priti.Ahire_Task33/backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure `.env` from `.env.example`:
+   ```env
+   PORT=5000
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   FRONTEND_URL=https://priti30-ai.github.io
+   ```
+4. Start the backend:
+   ```bash
+   npm start
+   ```
+   The backend runs on `http://localhost:5000`.
 
-## GitHub Pages Deployment
+### 2. Frontend Setup
 
-- **GitHub Pages URL**: `https://priti30-ai.github.io/MERN/`
-- **Workflow**: `.github/workflows/deploy.yml` builds `Priti.Ahire_Task33/frontend` and deploys the static build artifact (`dist/`) to GitHub Pages with the `/MERN/` base path.
-- **Architectural Note & Limitation**: GitHub Pages is a static hosting provider and only hosts the static frontend application. It does not run Node.js/Express and cannot directly communicate with a local MongoDB database. To test full dynamic CRUD operations, run the Express backend and MongoDB locally.
+1. Navigate to the frontend directory:
+   ```bash
+   cd Priti.Ahire_Task33/frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure `.env` from `.env.example`:
+   ```env
+   VITE_API_URL=http://localhost:5000/api
+   ```
+4. Start the Vite development server:
+   ```bash
+   npm run dev
+   ```
+   The application will be accessible at `http://localhost:5173`.
+
+## Deployment Guide
+
+### 1. MongoDB Atlas Configuration
+1. In your MongoDB Atlas cluster dashboard, navigate to **Network Access**.
+2. Add an IP Access List Entry allowing `0.0.0.0/0` (Allow access from anywhere) so Render can connect to your cluster.
+3. In **Database Access**, verify your database user has read/write privileges.
+4. Obtain your Atlas connection string:
+   `mongodb+srv://<username>:<password>@<cluster-url>/task33_db?retryWrites=true&w=majority`
+
+### 2. Render Backend Web Service
+1. Connect your GitHub repository `https://github.com/Priti30-ai/MERN.git` on [Render](https://render.com).
+2. Create a **New Web Service** pointing to the repository (or select from Blueprint via `render.yaml`).
+3. Set the service properties:
+   - **Root Directory**: `Priti.Ahire_Task33/backend`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+4. In the **Environment Variables** tab, add:
+   - `NODE_ENV`: `production`
+   - `MONGODB_URI`: `<Your MongoDB Atlas connection string>`
+   - `FRONTEND_URL`: `https://priti30-ai.github.io`
+5. Deploy the service and verify `https://<your-render-service>.onrender.com/api/health`.
+
+### 3. GitHub Pages Frontend Deployment
+1. Copy your deployed Render backend API URL (format: `https://<your-render-service>.onrender.com/api`).
+2. In your GitHub repository:
+   - Go to **Settings** → **Secrets and variables** → **Actions** → **Variables**.
+   - Create or update the repository variable `VITE_API_URL` with your Render API URL (e.g. `https://<your-render-service>.onrender.com/api`).
+3. Trigger the deployment workflow (`.github/workflows/deploy.yml`) under **Actions** tab by pushing to `main` or via **Run workflow**.
+4. Access the live frontend application at:
+   `https://priti30-ai.github.io/MERN/`
