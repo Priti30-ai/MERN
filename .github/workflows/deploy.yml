@@ -1,4 +1,4 @@
-name: Deploy Task 30 to GitHub Pages
+name: Deploy TaskFlow to GitHub Pages
 
 on:
   push:
@@ -32,24 +32,17 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: Priti.Ahire_Task30/package-lock.json
+          cache-dependency-path: Priti.Ahire_Task33/frontend/package-lock.json
 
       - name: Install dependencies
-        working-directory: Priti.Ahire_Task30
+        working-directory: Priti.Ahire_Task33/frontend
         run: npm ci
 
       - name: Build
-        working-directory: Priti.Ahire_Task30
+        working-directory: Priti.Ahire_Task33/frontend
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: npm run build
-
-      - name: Assemble Pages site
-        run: |
-          mkdir -p _site
-          cp -R Priti.Ahire_Task30/dist/. _site/
-          mkdir -p _site/Priti.Ahire_Task32/API_Documentation
-          cp Priti.Ahire_Task32/index.html _site/Priti.Ahire_Task32/
-          cp Priti.Ahire_Task32/API_Documentation/API_Documentation.html _site/Priti.Ahire_Task32/API_Documentation/
-          cp Priti.Ahire_Task32/API_Documentation/API_Documentation.pdf _site/Priti.Ahire_Task32/API_Documentation/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -57,7 +50,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: Priti.Ahire_Task33/frontend/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
