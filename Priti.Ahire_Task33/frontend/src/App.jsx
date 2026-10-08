@@ -190,7 +190,7 @@ function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <a className="brand" href="/" aria-label="TaskFlow home">
+        <a className="brand" href={import.meta.env.BASE_URL || '/'} aria-label="TaskFlow home">
           <TaskFlowLogo />
           <span className="brand-name">TaskFlow</span>
         </a>

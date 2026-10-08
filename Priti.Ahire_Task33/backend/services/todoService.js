@@ -44,7 +44,7 @@ const createTodo = async (todoData) => {
 
 const updateTodo = async (id, todoData) => {
   const todo = await Todo.findByIdAndUpdate(id, todoData, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
 
@@ -61,7 +61,7 @@ const updateTodoStatus = async (id, completed) => {
   const todo = await Todo.findByIdAndUpdate(
     id,
     { completed },
-    { new: true, runValidators: true }
+    { returnDocument: 'after', runValidators: true }
   );
 
   if (!todo) {

@@ -1,40 +1,41 @@
-# TaskFlow
+# Task 33 - TaskFlow MERN Application
 
 **Plan it. Track it. Finish it.**
 
-TaskFlow is a full-stack MERN productivity application for managing daily tasks with persistent MongoDB storage.
+TaskFlow is a full-stack MERN (MongoDB, Express, React, Node.js) application developed for Task 33 to manage tasks with persistent local MongoDB storage.
 
 ## Features
 
-- Create, view, edit, complete, reactivate, and delete tasks
+- Create tasks with a title and optional description
+- View task list with status badges and creation date
+- Edit task details (title, description)
+- Toggle task status (active / completed)
+- Delete tasks with confirmation
+- Filter tasks by status (All, Active, Completed)
 - Search tasks by title or description
-- Filter tasks by all, active, or completed status
-- Dashboard statistics based on the current task list
-- Responsive interface with loading, error, and empty states
-- MongoDB Atlas persistence
+- Task summary counters (Total, Active, Completed)
+- Responsive UI with loading, error, and empty states
 
 ## Tech Stack
 
-- React, Vite, JavaScript, Axios, CSS
-- Node.js, Express.js, Mongoose
-- MongoDB Atlas
-- GitHub Actions and GitHub Pages (frontend hosting)
+- **Frontend**: React 19, Vite, Axios, Vanilla CSS
+- **Backend**: Node.js, Express.js, Mongoose, CORS, dotenv
+- **Database**: Local MongoDB (`mongodb://127.0.0.1:27017/task33`)
+- **Frontend Hosting**: GitHub Pages (`https://priti30-ai.github.io/MERN/`)
 
 ## Architecture
 
 ```text
-React Frontend
-      ↓
+React Frontend (Vite)
+       ↓
      Axios
-      ↓
- Express REST API
-      ↓
-   Mongoose
-      ↓
- MongoDB Atlas
+       ↓
+ Express REST API (Node.js)
+       ↓
+    Mongoose
+       ↓
+  Local MongoDB
 ```
-
-The backend is a separate service. GitHub Pages hosts only the static frontend; it does not run Express or connect directly to MongoDB.
 
 ## Project Structure
 
@@ -42,109 +43,123 @@ The backend is a separate service. GitHub Pages hosts only the static frontend; 
 Priti.Ahire_Task33/
 ├── backend/
 │   ├── config/
+│   │   └── db.js
 │   ├── controllers/
+│   │   └── todoController.js
 │   ├── middleware/
+│   │   ├── errorMiddleware.js
+│   │   └── notFoundMiddleware.js
 │   ├── models/
+│   │   └── Todo.js
 │   ├── routes/
+│   │   └── todoRoutes.js
 │   ├── services/
+│   │   └── todoService.js
 │   ├── .env.example
 │   ├── package.json
 │   └── server.js
 └── frontend/
     ├── public/
     ├── src/
+    │   ├── components/
+    │   │   ├── TodoFilters.jsx
+    │   │   ├── TodoForm.jsx
+    │   │   ├── TodoItem.jsx
+    │   │   └── TodoList.jsx
+    │   ├── services/
+    │   │   └── todoApi.js
+    │   ├── App.css
+    │   ├── App.jsx
+    │   ├── index.css
+    │   └── main.jsx
     ├── .env.example
+    ├── index.html
     ├── package.json
     └── vite.config.js
 ```
 
-## Local Development
+## Local Development & Setup
 
-### Backend
+### Prerequisites
 
-Create `backend/.env` using the variables below, then start the API:
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community) installed and running locally on port `27017`
 
-```bash
-cd backend
-npm install
-npm start
-```
+### 1. Backend Setup
 
-The backend listens on `http://localhost:5000` by default.
+1. Open a terminal and navigate to the backend directory:
+   ```bash
+   cd Priti.Ahire_Task33/backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create your `.env` configuration file from `.env.example`:
+   ```bash
+   copy .env.example .env
+   ```
+   Ensure `.env` contains:
+   ```env
+   PORT=5000
+   MONGO_URI=mongodb://127.0.0.1:27017/task33
+   ```
+4. Start the backend server:
+   ```bash
+   npm start
+   ```
+   The backend API will run on `http://localhost:5000`.
 
-### Frontend
+### 2. Frontend Setup
 
-Create `frontend/.env` using the variables below, then start Vite:
+1. Open a second terminal and navigate to the frontend directory:
+   ```bash
+   cd Priti.Ahire_Task33/frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create your `.env` configuration file from `.env.example`:
+   ```bash
+   copy .env.example .env
+   ```
+   Ensure `.env` contains:
+   ```env
+   VITE_API_URL=http://localhost:5000/api
+   ```
+4. Start the Vite development server:
+   ```bash
+   npm run dev
+   ```
+   The React application will be available at `http://localhost:5173`.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## REST API Endpoints
 
-The development frontend is available at `http://localhost:5173`.
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | Backend health check |
+| `GET` | `/api/todos` | Get all tasks (supports `?search=` and `?status=` query params) |
+| `POST` | `/api/todos` | Create a new task (`title`, `description`) |
+| `GET` | `/api/todos/:id` | Get a specific task by ID |
+| `PUT` | `/api/todos/:id` | Update task title and description |
+| `PATCH` | `/api/todos/:id/status` | Update task status (`completed`: boolean) |
+| `DELETE` | `/api/todos/:id` | Delete a task |
 
-## Environment Variables
+## Validation & Verification
 
-Create local `.env` files from the corresponding `.env.example` files. `.env` files can contain private connection information and must never be committed.
+### Backend Verification
+- Ensure local MongoDB service is running (`MongoDB Server` on `mongodb://127.0.0.1:27017/task33`).
+- Start the server: `npm start` in `backend/`.
+- Verify health check: `GET http://localhost:5000/api/health`.
 
-### `backend/.env`
-
-```env
-PORT=5000
-MONGO_URI=your_mongodb_atlas_connection_string
-```
-
-Use the connection string from your MongoDB Atlas cluster. Create a database user and allow the backend host in Atlas Network Access.
-
-### `frontend/.env`
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-The frontend uses this variable for the REST API URL. In local development, it defaults to `http://localhost:5000/api`.
-
-## API
-
-The Express backend exposes:
-
-- `GET /api/health`
-- `GET /api/todos`
-- `POST /api/todos`
-- `GET /api/todos/:id`
-- `PUT /api/todos/:id`
-- `PATCH /api/todos/:id/status`
-- `DELETE /api/todos/:id`
-
-The list endpoint supports `search` and `status` query parameters.
+### Frontend Verification
+- Lint check: `npm run lint` in `frontend/`.
+- Production build: `npm run build` in `frontend/`.
+- Assets build correctly with `/MERN/` base path for GitHub Pages compatibility.
 
 ## GitHub Pages Deployment
 
-The repository has one Pages workflow at `.github/workflows/deploy.yml`. Pushes to `main` and manual workflow dispatch build the frontend from `Priti.Ahire_Task33/frontend` and publish only `Priti.Ahire_Task33/frontend/dist` through GitHub Actions. The previous shared Pages artifact (Task 30 plus Task 32 documentation) is replaced by TaskFlow; those project source files remain in the repository.
-
-In the GitHub repository, select **Settings → Pages → Build and deployment → Source: GitHub Actions**. No `gh-pages` branch is used.
-
-The Vite base is `/`, which supports a root-hosted site and a future custom domain. No custom domain or live URL is configured in this project.
-
-GitHub Pages serves only static files. The backend must be deployed separately before the hosted frontend can use the full Todo API. When a backend URL is available, add a repository Actions variable named `VITE_API_URL` containing its API base URL, for example `https://your-api-host.example/api`. The deployment workflow passes that variable into the Vite build. If it is not configured, the production app uses the same-origin `/api` path rather than pointing at a developer's localhost.
-
-To use a custom domain later:
-
-1. Add the domain in the repository's **Settings → Pages → Custom domain** field.
-2. Configure the DNS records required by GitHub Pages for the chosen domain type.
-3. Wait for DNS verification and enable HTTPS in Pages settings when available.
-
-Do not add a `CNAME` file until an actual domain has been chosen. No deployment is claimed until the GitHub Actions Pages deployment succeeds.
-
-## Checks
-
-Run the frontend checks before publishing:
-
-```bash
-cd frontend
-npm run lint
-npm run build
-```
-
-For API development, start MongoDB Atlas access and the backend, then test the endpoints with a REST client or `curl`.
+- **GitHub Pages URL**: `https://priti30-ai.github.io/MERN/`
+- **Workflow**: `.github/workflows/deploy.yml` builds `Priti.Ahire_Task33/frontend` and deploys the static build artifact (`dist/`) to GitHub Pages with the `/MERN/` base path.
+- **Architectural Note & Limitation**: GitHub Pages is a static hosting provider and only hosts the static frontend application. It does not run Node.js/Express and cannot directly communicate with a local MongoDB database. To test full dynamic CRUD operations, run the Express backend and MongoDB locally.
