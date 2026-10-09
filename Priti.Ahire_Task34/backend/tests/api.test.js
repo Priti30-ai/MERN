@@ -1,11 +1,19 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const mongoose = require('mongoose');
 const request = require('supertest');
 const { app, connectDB } = require('../server');
 
 async function setupDatabase() {
   await connectDB();
+  if (mongoose.connection.db) {
+    await mongoose.connection.db.dropDatabase();
+  }
 }
+
+test.after(async () => {
+  await mongoose.disconnect();
+});
 
 test('POST /api/users creates a user', async () => {
   await setupDatabase();
