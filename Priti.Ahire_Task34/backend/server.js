@@ -7,16 +7,34 @@ const postRoutes = require('./routes/postRoutes');
 
 dotenv.config();
 
+const DEFAULT_LOCAL_MONGO_URI = 'mongodb://127.0.0.1:27017/schema-reference';
+
+function getMongoUri() {
+  const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI || DEFAULT_LOCAL_MONGO_URI;
+
+  if (process.env.NODE_ENV === 'production' && !process.env.MONGO_URI && !process.env.MONGODB_URI) {
+    throw new Error('MONGO_URI is required in production. Set it in the Render backend environment variables.');
+  }
+
+  return mongoUri;
+}
+
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/schema-reference';
 
-const allowedOrigins = [
+const localOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
   'http://localhost:4173',
   'http://127.0.0.1:4173',
-].filter(Boolean);
+];
+
+const allowedOrigins = Array.from(
+  new Set(
+    [process.env.FRONTEND_URL, process.env.CORS_ORIGIN, ...localOrigins]
+      .flatMap((value) => (value ? value.split(',').map((item) => item.trim()).filter(Boolean) : []))
+  )
+);
 
 app.use(
   cors({
@@ -34,9 +52,15 @@ app.use(
 app.use(express.json());
 
 app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Server is healthy',
+  const databaseReady = mongoose.connection.readyState === 1;
+
+  res.status(databaseReady ? 200 : 503).json({
+    success: databaseReady,
+    message: databaseReady ? 'Server and database are healthy.' : 'Server is running but the database is not ready.',
+    database: {
+      ready: databaseReady,
+      state: mongoose.connection.readyState,
+    },
   });
 });
 
@@ -67,11 +91,18 @@ async function connectDB() {
     return;
   }
 
-  await mongoose.connect(MONGO_URI, {
-    serverSelectionTimeoutMS: 5000,
-  });
+  const mongoUri = getMongoUri();
 
-  console.log('MongoDB connected successfully.');
+  try {
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+    });
+
+    console.log('MongoDB connected successfully.');
+  } catch (error) {
+    console.error('MongoDB connection failed. Check MONGO_URI configuration in the backend environment.');
+    throw error;
+  }
 }
 
 if (require.main === module) {
@@ -82,7 +113,7 @@ if (require.main === module) {
       });
     })
     .catch((error) => {
-      console.error('MongoDB connection failed:', error.message);
+      console.error('Database initialization failed:', error.message);
       process.exit(1);
     });
 }

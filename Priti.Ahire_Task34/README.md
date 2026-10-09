@@ -71,6 +71,8 @@ Priti.Ahire_Task34/
 MONGO_URI=mongodb://127.0.0.1:27017/schema-reference
 ```
 
+For Atlas, use the exact connection string provided in MongoDB Atlas and store it in Render or your local `.env` file only.
+
 ## Environment Variables
 
 At the backend root, create a `.env` file based on `.env.example`:
@@ -84,6 +86,8 @@ Frontend environment variables:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
+# For production deployment, set VITE_API_URL to your deployed backend URL, e.g.:
+# VITE_API_URL=https://your-render-backend.onrender.com/api
 ```
 
 ## Backend Installation
