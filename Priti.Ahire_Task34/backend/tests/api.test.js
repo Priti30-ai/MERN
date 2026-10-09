@@ -15,6 +15,40 @@ test.after(async () => {
   await mongoose.disconnect();
 });
 
+test('CORS allows the deployed Task34 frontend origin', async () => {
+  const response = await request(app)
+    .get('/api/health')
+    .set('Origin', 'https://task34-frontend.onrender.com');
+
+  assert.equal(response.headers['access-control-allow-origin'], 'https://task34-frontend.onrender.com');
+  assert.equal(response.headers['access-control-allow-credentials'], 'true');
+});
+
+test('CORS rejects an unconfigured frontend origin', async () => {
+  const response = await request(app)
+    .get('/api/health')
+    .set('Origin', 'https://not-allowed.example');
+
+  assert.equal(response.headers['access-control-allow-origin'], undefined);
+  assert.equal(response.body.message, 'Origin not allowed by CORS');
+});
+
+test('CORS answers frontend preflight requests for API methods and headers', async () => {
+  const response = await request(app)
+    .options('/api/users')
+    .set('Origin', 'https://task34-frontend.onrender.com')
+    .set('Access-Control-Request-Method', 'POST')
+    .set('Access-Control-Request-Headers', 'content-type,authorization');
+
+  assert.equal(response.status, 204);
+  assert.equal(response.headers['access-control-allow-origin'], 'https://task34-frontend.onrender.com');
+  assert.equal(response.headers['access-control-allow-credentials'], 'true');
+  assert.match(response.headers['access-control-allow-methods'], /GET/);
+  assert.match(response.headers['access-control-allow-methods'], /POST/);
+  assert.match(response.headers['access-control-allow-headers'], /Content-Type/i);
+  assert.match(response.headers['access-control-allow-headers'], /Authorization/i);
+});
+
 test('POST /api/users creates a user', async () => {
   await setupDatabase();
 
